@@ -2,8 +2,12 @@ package com.example.todo.domain.todo;
 
 import com.example.todo.domain.tag.Tag;
 import jakarta.persistence.*;
-import lombok.Builder;
+import lombok.AccessLevel;
+import lombok.*;
 
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class TodoTag {
 
     @Id

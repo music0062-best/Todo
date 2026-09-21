@@ -1,5 +1,6 @@
 package com.example.todo.domain.todo;
 
+import com.example.todo.domain.tag.Tag;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -26,5 +27,13 @@ public class Todo {
         this.title = title;
         this.done = false;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public void addTag(Tag tag) {
+        TodoTag todoTag = TodoTag.builder()
+                .todo(this)
+                .tag(tag)
+                .build();
+        this.todoTags.add(todoTag);
     }
 }
