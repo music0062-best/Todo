@@ -26,4 +26,9 @@ public class TodoController {
     public ResponseEntity<List<TodoResponse>> getTodos() {
         return ResponseEntity.ok(todoService.findAll());
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<TodoResponse>> searchByTag(@RequestParam String tag) {
+        return ResponseEntity.ok(todoService.findByTag(tag));
+    }
 }
