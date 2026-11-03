@@ -31,4 +31,9 @@ public class TodoController {
     public ResponseEntity<List<TodoResponse>> searchByTag(@RequestParam String tag) {
         return ResponseEntity.ok(todoService.findByTag(tag));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TodoResponse> getTodo(@PathVariable Long id) {
+        return ResponseEntity.ok(todoService.findById(id));
+    }
 }

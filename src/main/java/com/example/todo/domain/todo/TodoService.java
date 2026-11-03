@@ -4,6 +4,7 @@ import com.example.todo.domain.tag.Tag;
 import com.example.todo.domain.tag.TagRepository;
 import com.example.todo.domain.todo.dto.TodoCreateRequest;
 import com.example.todo.domain.todo.dto.TodoResponse;
+import com.example.todo.global.exception.TodoNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,5 +47,11 @@ public class TodoService {
         return todoRepository.findByTodoTags_Tag_Name(tagName).stream()
                 .map(TodoResponse::new)
                 .toList();
+    }
+
+    public TodoResponse findById(Long id) {
+        Todo todo = todoRepository.findById(id)
+                .orElseThrow(() -> new TodoNotFoundException(id));
+        return new TodoResponse(todo);
     }
 }
